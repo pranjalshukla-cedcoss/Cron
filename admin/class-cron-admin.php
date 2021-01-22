@@ -392,26 +392,53 @@ class Cron_Admin {
 	 * @return void
 	 */
 	public function interval_display_new() {
-		$postarray = array(
-			'post_type'   => 'product_key',
+		// $postarray = array(
+		// 	'post_type'   => 'product_key',
+		// 	'post_status' => 'publish',
+		// );
+		// $postinfoarray = array();
+		// $postquery = new WP_Query( $postarray );
+		// if ( $postquery->have_posts() ) {
+		// 	while ( $postquery->have_posts() ) {
+		// 		$postinfo = array(
+		// 			'id'      => get_the_ID(),
+		// 			'title'   => get_the_title(),
+		// 			'content' => get_the_content(),
+		// 		);
+		// 		array_push( $postinfoarray, $postinfo );
+		// 	}
+		// 	$file = fopen( 'newcsv.csv', 'w', ',' );
+		// 	foreach ( $postinfoarray as $postinfoarraychild ) {
+		// 		fputcsv( $file, $postinfoarraychild );
+		// 	}
+		// 	fclose( $file );
+		// }
+		$arg = array(
+			'post_type' => 'product_key',
 			'post_status' => 'publish',
 		);
-		$postinfoarray = array();
-		$postquery = new WP_Query( $postarray );
-		if ( $postquery->have_posts() ) {
-			while ( $postquery->have_posts() ) {
-				$postinfo = array(
-					'id'      => get_the_ID(),
-					'title'   => get_the_title(),
-					'content' => get_the_content(),
-				);
-				array_push( $postinfoarray, $postinfo );
+
+		global $post;
+		$arr_post = get_posts($arg);
+		if ($arr_post) {
+
+			header('Content-type: text/csv');
+			header('Content-Disposition: attachment; filename="wp-posts.csv"');
+			header('Pragma: no-cache');
+			header('Expires: 0');
+
+			$file = fopen('newcsv.csv', 'w');
+
+			fputcsv($file, array('ID', 'Post Title', 'Post Content'));
+
+			foreach ($arr_post as $post) {
+				setup_postdata($post);
+				$id = get_the_ID();
+				$title = get_the_title();
+				$content = get_the_content();
+				fputcsv( $file, array( $id, $title, $content ) );
 			}
-			$file = fopen( 'newcsv.csv', 'w', ',' );
-			foreach ( $postinfoarray as $postinfoarraychild ) {
-				fputcsv( $file, $postinfoarraychild );
-			}
-			fclose( $file );
+			exit();
 		}
 	}
 

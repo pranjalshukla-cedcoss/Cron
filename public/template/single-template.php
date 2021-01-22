@@ -45,6 +45,72 @@ while ( have_posts() ) :
 	// $_SESSION['xml'] = $xml;
 
 
+
+
+
+
+	// $postarray = array(
+	// 	'post_type'   => 'product_key',
+	// 	'post_status' => 'publish',
+	// );
+	// $postinfoarray = array();
+	// $postquery = new WP_Query( $postarray );
+	// if ( $postquery->have_posts() ) {
+	// 	$file = fopen( 'newcsv.csv', 'w', ',' );
+	// 	while ( $postquery->have_posts() ) {
+	// 		$postinfo = array(
+	// 			'id'      => get_the_ID(),
+	// 			'title'   => get_the_title(),
+	// 			'content' => get_the_content(),
+	// 		);
+	// 		print_r( $postinfo );
+	// 		fputcsv( $file, $postinfo );
+	// 		//array_push( $postinfoarray, $postinfo );
+	// 	}
+	// 	// print_r( $postinfoarray );
+	// 	// $file = fopen( 'newcsv.csv', 'w', ',' );
+	// 	// foreach ( $postinfoarray as $postinfoarraychild ) {
+	// 		// fputcsv( $file, $postinfoarraychild );
+	// 	// }
+	// 	fclose( $file );
+	// }
+
+
+
+
+
+	// $arg = array(
+	// 	'post_type' => 'product_key',
+	// 	'post_status' => 'publish',
+	// );
+
+	// global $post;
+	// $arr_post = get_posts($arg);
+	// if ($arr_post) {
+
+	// 	header('Content-type: text/csv');
+	// 	header('Content-Disposition: attachment; filename="wp-posts.csv"');
+	// 	header('Pragma: no-cache');
+	// 	header('Expires: 0');
+
+	// 	$file = fopen('newcsv.csv', 'w');
+
+	// 	fputcsv($file, array('ID', 'Post Title', 'Post Content'));
+
+	// 	foreach ($arr_post as $post) {
+	// 		setup_postdata($post);
+	// 		$id = get_the_ID();
+	// 		$title = get_the_title();
+	// 		$content = get_the_content();
+	// 		fputcsv( $file, array( $id, $title, $content ) );
+	// 	}
+
+	// 	exit();
+	// }
+
+
+
+
 	// $c = 1;
 	// $d = 10;
 	// if ( ! get_option( 'initial' ) ) {
